@@ -1,5 +1,5 @@
 title: welcome to mediabiblioteket
 theme: jekyll-theme-merlot
-my_link: https://try.github.io/
 
-{% page.my_link %}
+
+{% link https://www.google.com %}
