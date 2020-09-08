@@ -3,10 +3,9 @@
 En applikation skriven i Java programmeringsspråket som fungerar som ett digitalt bibliotekssystem för utlån och återlämning 
 av olika slags media. Den är byggd med Java Swing som är Javas officiella API för att konstruera grafiska användargränssnitt.  
 
-
+&nbsp;
 
 ## Instruktioner för att kunna köra applikationen
-
 
 #### Steg 1 (Installera Eclipse) 
 
@@ -16,7 +15,7 @@ https://www.eclipse.org/downloads/packages/release/2019-06/r/eclipse-ide-java-de
 
 OBS! Se till att välja rätt version för din dator och följ instruktionerna för nedladdningen. 
 
-
+&nbsp;
 
 #### Steg 2 (Installera JDK)
 
@@ -26,7 +25,7 @@ https://www.oracle.com/technetwork/java/javase/downloads/index.html
 
 Välj den senaste versionen och följ installationsanvisningarna. 
 
-
+&nbsp;
 
 #### Steg 3 (Importera applikationen till Eclipse)
 
@@ -38,6 +37,7 @@ Sedan bläddrar du fram mappen med filerna i genom att trycka på _Directory..._
 
 OBS! Tänk på att du efter importen behöver flytta över mappen _files_ (som innehåller nödvändiga datafiler) under Mediabibliotek till Huvudkatalogen för projektet för att applikationen ska kunna hitta den.
 
+&nbsp;
 
 #### Steg 4 (Köra applikationen)
 
@@ -51,8 +51,7 @@ OBS! För att kunna logga in i programmet vid körning finns det förvalda anvä
 De olika medier som går att söka på finns i en annan CSV-fil, _Media.txt_. 
 
 
-</br>
-</br>
+
 Sedan är det bara att prova sig fram!
 
 
