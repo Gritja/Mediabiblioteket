@@ -41,7 +41,7 @@ OBS! Tänk på att du efter importen behöver flytta över mappen _files_ (som i
 
 #### Steg 4 (Köra applikationen)
 
-När du väl har importerat applikationen i Eclipse så kan testköra applikationen genom att gå till huvudklassen _GUI.java_,
+När du väl har importerat applikationen i Eclipse så kan du testköra applikationen genom att gå till huvudklassen _GUI.java_,
 högerklicka i filen och välja _Run As_ -> _Java Application_. 
 
 
