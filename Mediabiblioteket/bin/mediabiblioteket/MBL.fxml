@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +13,7 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mediabiblioteket.GUI">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="0.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
         <Label alignment="CENTER" layoutX="181.0" layoutY="14.0" style="&#10;" text="Welcome to the Media Library!" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
           <font>
@@ -21,15 +22,18 @@
         </Label>
             <BorderPane layoutX="204.0" layoutY="91.0" prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                  <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
             <TextField fx:id="searchMedia" layoutX="14.0" layoutY="41.0" promptText="Search..." />
             <Button fx:id="searchBtn" layoutX="178.0" layoutY="41.0" mnemonicParsing="false" onAction="#actionPerformed" text="Search" />
             <Button fx:id="borrowedBtn" layoutX="252.0" layoutY="41.0" mnemonicParsing="false" onAction="#actionPerformed" text="Borrowed" />
-            <RadioButton fx:id="chkAll" layoutX="352.0" layoutY="45.0" mnemonicParsing="false" text="All" />
-            <RadioButton fx:id="chkTitle"layoutX="404.0" layoutY="45.0" mnemonicParsing="false" text="Title" />
-            <RadioButton fx:id="chkId"layoutX="453.0" layoutY="45.0" mnemonicParsing="false" text="ID" />
+            <RadioButton fx:id="chkAll" layoutX="352.0" layoutY="45.0" mnemonicParsing="false" text="All">
+               <toggleGroup>
+                  <ToggleGroup fx:id="group" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="chkTitle" ToggleGroup="$group" layoutX="404.0" layoutY="45.0" mnemonicParsing="false" text="Title" />
+            <RadioButton fx:id="chkId" ToggleGroup="$group" layoutX="453.0" layoutY="45.0" mnemonicParsing="false" text="ID" />
             <Button fx:id="borrowBtn" layoutX="204.0" layoutY="291.0" mnemonicParsing="false" onAction="#actionPerformed" text="Borrow" />
             <Button fx:id="infoBtn" layoutX="369.0" layoutY="291.0" mnemonicParsing="false" onAction="#actionPerformed" text="Info" />
       </children>

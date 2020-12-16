@@ -21,9 +21,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -31,7 +36,7 @@ import javafx.stage.Stage;
  * Huvudfönstret i Bibliotekssystemet som användaren interagerar med för att bl.a. söka efter
  * olika mediatyper och låna en specifik media 
  */
-public class GUI extends Application 
+public class GUI 
 {
 	/**
 	 * Serial number
@@ -48,11 +53,26 @@ public class GUI extends Application
 	private Button loginBtn;
 	//biblioteket fxml
 	@FXML
+	private AnchorPane anchorPane;
+	@FXML
+	private BorderPane borderPane;
+	@FXML
+	private ListView listView;
+	@FXML
 	private TextField searchMedia;
 	@FXML
 	private Button searchBtn;
 	@FXML
 	private Button searchBorrowed;
+	@FXML
+	private ToggleGroup group;	
+	@FXML
+	private RadioButton chkAll;
+	@FXML
+	private RadioButton chkTitle;
+	@FXML
+	private RadioButton chkId;
+
 	
 	LibraryController theController;
 	
@@ -64,6 +84,7 @@ public class GUI extends Application
 	{
 		
 		theController = new LibraryController(this);
+
 //		String userName = txtUserName.getText();
 		System.out.println("GOGOGO");
 	}
@@ -90,37 +111,16 @@ public class GUI extends Application
 				else
 				{
 					System.out.println("HAI");
-					
-//					 String sceneFile = "/mediabiblioteket/MBL.fxml";
-//					    Parent root = null;
-//					    URL    url  = null;
-//					    try
-//					    {
-//					        url  = getClass().getResource( sceneFile );
-//					        root = FXMLLoader.load( url );
-//					        System.out.println( "  fxmlResource = " + sceneFile );
-//					    }
-//					    catch ( Exception ex )
-//					    {
-//					        System.out.println( "Exception on FXMLLoader.load()" );
-//					        System.out.println( "  * url: " + url );
-//					        System.out.println( "  * " + ex );
-//					        System.out.println( "    ----------------------------------------\n" );
-//					    }
-					
-//					FXMLLoader loader = new FXMLLoader(getClass().getResource("/mediabiblioteket/MBL.fxml"));
-//					loader.setController(new MainController(path));
-					//Pane mainPane = loader.load();
 					try {
-						root = FXMLLoader.load(getClass().getResource("/mediabiblioteket/MBL.fxml"));
+						root = FXMLLoader.load(getClass().getResource("/mediabiblioteket/MBL.fxml"));					
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					
 			        Stage primaryStage = new Stage();
-			        
 					VBox vbox = new VBox(root);
+					vbox.getChildren().addAll();
 				    Scene scene = new Scene(vbox);
 			        primaryStage.setScene(scene);
 			        primaryStage.show();
@@ -145,7 +145,7 @@ public class GUI extends Application
 	 */
 	public void clearTheTextArea()
 	{
-		//theTextAreaModel.clear();
+		listView.getItems().clear();
 	}
 	
 	/**
@@ -154,7 +154,7 @@ public class GUI extends Application
 	 */
 	public void setTheTextArea(String addText)
 	{
-		//theTextAreaModel.addElement(addText);
+		listView.getItems().add(addText);
 	}
 	/**
 	 * Lyssnar på Event ifrån användaren.Här kan låntagaren välja att 
@@ -165,15 +165,30 @@ public class GUI extends Application
 	 **/
 	public void actionPerformed(ActionEvent e)
 	{
-		loginBtn.setOnAction((ActionEvent event) -> {
+		loginBtn.setOnAction((ActionEvent login) -> {
 			login(txtUserName.getText());
 		});
 		
-//		searchBtn.setOnAction((ActionEvent j) -> {
-//			login(txtUserName.getText());
-//		});
+		searchBtn.setOnAction((ActionEvent search) -> {
+			if (theController.checkUserInput(searchMedia.getText())) {
+//				borrowButton.setText("Borrow");
+				clearTheTextArea();
+				if(chkId.isSelected())
+				{
+					if(theController.checkInputOnlyDigits(searchMedia.getText()))
+					{
+						Media temp = theController.getMedia(searchMedia.getText());
+						theController.mediaSearchResults.add(temp);
+						if(temp!=null) {
+							setTheTextArea(temp.toString());
+					}
+				}
+			}
+		}
 		
-	}	
+	});	
+	}
+
 //		if(searchButton==e.getSource())
 //		{
 //			String theInput = theSearchField.getText();
@@ -271,20 +286,20 @@ public class GUI extends Application
 	/**
 	 * Programstarten som öppnar applikationen
 	 */
-	public static void main(String[] args)
-	{
-		launch(args);
-	}
-
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		
-		root = FXMLLoader.load(getClass().getResource("/mediabiblioteket/Login.fxml"));
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-		new GUI();
-	}
+//	public static void main(String[] args)
+//	{
+//		launch(args);
+//	}
+//
+//	@Override
+//	public void start(Stage primaryStage) throws Exception {
+//		
+//		root = FXMLLoader.load(getClass().getResource("/mediabiblioteket/Login.fxml"));
+//        Scene scene = new Scene(root);
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+//		new GUI();
+//	}
 
 
 }
